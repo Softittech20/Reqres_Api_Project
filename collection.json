@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "6b965854-67d0-4621-b553-09069a2d1c05",
+		"name": "Sample Api Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20112384"
+	},
+	"item": [
+		{
+			"name": "Get Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify Status code of Get Users Request\",function(){\r",
+							"   pm.expect(pm.response.code).to.eql(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Verify Status message of Get Users Request\",function(){\r",
+							"   pm.expect(pm.response.status).to.eql(\"OK\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Verify Response time of Get Users Request\",function(){\r",
+							"   pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Verify Response body of Get Users Request\",function(){\r",
+							"    const resp = pm.response.json();\r",
+							"   pm.expect(resp.page).to.eql(2);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/api/users?page=2",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify Status code of Create User Request\",function(){\r",
+							"   pm.expect(pm.response.code).to.eql(201);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Verify Status message of Create User Request\",function(){\r",
+							"   pm.expect(pm.response.status).to.eql(\"Created\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Verify Response time of Create User Request\",function(){\r",
+							"   pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Verify Response body of Create User Request\",function(){\r",
+							"    const resp = pm.response.json();\r",
+							"   pm.expect(resp.name).to.eql(\"morpheus\");\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"leader\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/api/users",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
